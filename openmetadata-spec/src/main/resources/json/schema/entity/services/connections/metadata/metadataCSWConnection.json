@@ -1,0 +1,75 @@
+{
+    "$id": "https://open-metadata.org/schema/entity/services/connections/metadata/metadataCSWConnection.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "MetadataCSWConnection",
+    "description": "Metadata CSW Connection Config",
+    "type": "object",
+    "javaType": "org.openmetadata.schema.services.connections.metadata.MetadataCSWConnection",
+    "definitions": {
+        "metadataCSWType": {
+            "description": "Service type.",
+            "type": "string",
+            "enum": [
+                "MetadataCSW"
+            ],
+            "default": "MetadataCSW"
+        }
+    },
+    "properties": {
+        "type": {
+            "description": "Service Type",
+            "$ref": "#/definitions/metadataCSWType",
+            "default": "MetadataCSW"
+        },
+        "username": {
+            "description": "username to connect  to the Geonode. This user should have privileges to read all the metadata in Geonode.",
+            "type": "string"
+        },
+        "password": {
+            "description": "password to connect  to the Geonode.",
+            "type": "string",
+            "format": "password"
+        },
+        "hostPort": {
+            "description": "Host and port of the CSW service.",
+            "title": "Host and Port",
+            "type": "string",
+            "format": "uri",
+            "expose": true
+        },
+        "databaseServiceName": {
+            "description": "service type of the data source.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "messagingServiceName": {
+            "description": "service type of the messaging source",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "entity_type": {
+            "title": "Entity Type",
+            "description": "Name of the Entity Type available in Atlas.",
+            "type": "string"
+        },
+        "connectionOptions": {
+            "$ref": "../connectionBasicType.json#/definitions/connectionOptions"
+        },
+        "connectionArguments": {
+            "$ref": "../connectionBasicType.json#/definitions/connectionArguments"
+        },
+        "supportsMetadataExtraction": {
+            "$ref": "../connectionBasicType.json#/definitions/supportsMetadataExtraction"
+        }
+    },
+    "required": [
+        "entity_type",
+        "username",
+        "password"
+    ],
+    "additionalProperties": false
+}
